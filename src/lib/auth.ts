@@ -20,5 +20,9 @@ export const auth = betterAuth({
       clientId: process.env.GITHUB_CLIENT_ID || "mock-client-id",
       clientSecret: process.env.GITHUB_CLIENT_SECRET || "mock-client-secret",
     }
-  }
+  },
+  trustedOrigins: process.env.VERCEL_URL ? [
+    `https://${process.env.VERCEL_URL}`,
+    "https://assignment-7-eight-gamma.vercel.app" // Vercel production domain
+  ] : []
 });
