@@ -46,31 +46,43 @@ const unitMap: { [key: string]: string } = {
 export default function ProductCard({ product }: { product: Product }) {
   const { id, nameBn, image, unit, today, change } = product;
   
-  let badgeColor = "bg-gray-100 text-gray-700";
+  let badgeColor = "text-gray-500";
   let icon = "—";
   if (change.dir === "up") {
-    badgeColor = "bg-red-100 text-red-700";
+    badgeColor = "text-red-500 font-medium";
     icon = "▲";
   } else if (change.dir === "down") {
-    badgeColor = "bg-green-100 text-green-700";
+    badgeColor = "text-green-600 font-medium";
     icon = "▼";
   }
 
   const changeText = `${toBengaliDigit(Math.abs(change.pct))}%`;
 
   return (
-    <Link href={`/product/${id}`} className="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-4 cursor-pointer">
-      <div className="flex justify-between items-start mb-3">
-        <div className="text-4xl">{image}</div>
-        <div className={`px-2 py-0.5 rounded text-xs font-bold flex gap-1 items-center ${badgeColor}`}>
-          <span>{icon}</span> <span>{changeText}</span>
+    <Link 
+      href={`/product/${id}`} 
+      className="group relative flex flex-col justify-between bg-white rounded-2xl p-4 cursor-pointer transition-all duration-300 border border-gray-100 shadow-sm hover:shadow-md hover:border-green-500 hover:-translate-y-1"
+    >
+      <div className="flex items-center gap-4 mb-6">
+        <div className="w-14 h-14 flex items-center justify-center bg-gray-50 rounded-full text-3xl group-hover:bg-green-50 transition-colors duration-300">
+          {image}
+        </div>
+        <div>
+          <h2 className="text-base font-medium text-gray-800 leading-tight mb-1">{nameBn}</h2>
+          <p className="text-gray-500 text-[13px]">প্রতি {unitMap[unit] || unit}</p>
         </div>
       </div>
-      <h2 className="text-lg font-bold text-gray-900 leading-none mb-1.5">{nameBn}</h2>
-      <p className="text-gray-500 text-sm mb-3">প্রতি {unitMap[unit] || unit}</p>
-      <div className="pt-3 border-t border-gray-100 flex justify-between items-center">
-        <span className="text-xs text-gray-400">আজকের দাম</span>
-        <span className="font-bold text-lg text-gray-900">{toBengaliDigit(today)} টাকা</span>
+      
+      <div className="flex justify-between items-end">
+        <div>
+          <p className="text-xs text-gray-400 mb-1">আজকের দাম</p>
+          <p className="text-[20px] font-medium text-gray-900 leading-none">
+            {toBengaliDigit(today)} <span className="text-[13px] text-gray-500">টাকা</span>
+          </p>
+        </div>
+        <div className={`text-[13px] flex gap-1 items-center ${badgeColor}`}>
+          <span className="text-[10px]">{icon}</span> <span>{changeText}</span>
+        </div>
       </div>
     </Link>
   );
