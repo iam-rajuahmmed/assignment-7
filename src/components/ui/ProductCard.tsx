@@ -59,15 +59,15 @@ export default function ProductCard({ product }: { product: Product }) {
   const changeText = `${toBengaliDigit(Math.abs(change.pct))}%`;
 
   return (
-    <Link href={`/product/${id}`} className="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-5 cursor-pointer">
-      <div className="flex justify-between items-start mb-4">
+    <Link href={`/product/${id}`} className="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-4 cursor-pointer">
+      <div className="flex justify-between items-start mb-3">
         <div className="text-4xl">{image}</div>
         <div className={`px-2 py-0.5 rounded text-xs font-bold flex gap-1 items-center ${badgeColor}`}>
           <span>{icon}</span> <span>{changeText}</span>
         </div>
       </div>
       <h2 className="text-lg font-bold text-gray-900 leading-none mb-1.5">{nameBn}</h2>
-      <p className="text-gray-500 text-sm mb-5">প্রতি {unitMap[unit] || unit}</p>
+      <p className="text-gray-500 text-sm mb-3">প্রতি {unitMap[unit] || unit}</p>
       <div className="pt-3 border-t border-gray-100 flex justify-between items-center">
         <span className="text-xs text-gray-400">আজকের দাম</span>
         <span className="font-bold text-lg text-gray-900">{toBengaliDigit(today)} টাকা</span>

@@ -23,6 +23,7 @@ async function getCategoryProducts(slug: string): Promise<{ products: Product[],
   }
 }
 
+export const instant = false;
 export default async function CategoryPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   const { products, categoryName } = await getCategoryProducts(slug);

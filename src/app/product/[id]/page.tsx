@@ -16,6 +16,7 @@ async function getProduct(id: string): Promise<Product | null> {
   }
 }
 
+export const instant = false;
 export default async function ProductDetails({ params }: { params: { id: string } }) {
   const session = await auth.api.getSession({
     headers: await headers(),
